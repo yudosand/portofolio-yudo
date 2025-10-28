@@ -1,0 +1,160 @@
+body {
+  padding-top: 10px; /* sesuaikan dengan tinggi navbar kamu */
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  color: #000;
+  scroll-behavior: smooth;
+}
+section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+section:not(:last-child) {
+  margin-bottom: 80px;
+}
+
+/* Navbar */
+.navbar-nav .nav-link {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  font-weight: 400;
+}
+.navbar-nav .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 90vh;
+}
+.hero h1 {
+  font-size: 48px;
+  font-weight: 700;
+}
+.hero p {
+  font-size: 16px;
+  color: #555;
+}
+.hero .btn {
+  font-family: 'Roboto Mono', monospace;
+  letter-spacing: 1px;
+}
+
+/* Skill Section (cards) */
+#skill {
+    padding-top: 10px;
+  font-family: 'Inter', sans-serif;
+}
+.skill-card {
+  background: #f8f9fa;
+  border-radius: 12px;
+  transition: transform 0.28s cubic-bezier(.2,.8,.2,1), box-shadow 0.28s;
+  padding: 22px;
+}
+.skill-card img {
+  display: block;
+  margin: 0 auto;
+}
+.skill-card h5 {
+  margin-top: 6px;
+  margin-bottom: 8px;
+}
+.skill-card .progress-bar {
+  transition: width 1s ease;
+}
+.skill-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(16,24,40,0.08);
+}
+
+/* Work */
+#work {
+    padding-top: 80px;
+  background-color: #fff;
+}
+#work h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+#work ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  font-family: "Roboto Mono", monospace;
+  font-size: 14px;
+}
+#work img {
+  transition: transform 0.3s ease;
+}
+#work img:hover {
+  transform: scale(1.05);
+}
+
+/* Project */
+#project {
+  background-color: #fff;
+}
+#project h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.portfolio-item {
+  max-width: 360px;
+  margin: 0 auto;
+}
+.portfolio-item img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.portfolio-item img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+.portfolio-item h6 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.portfolio-item p {
+  font-family: "Roboto Mono", monospace;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Footer */
+footer {
+  background: #0b1220;
+  color: #fff;
+}
+footer p {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+@keyframes subtlePulse {
+  0% { opacity: .7; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+  100% { opacity: .7; transform: translateY(0); }
+}
+
+/* Modal image style (if needed) */
+.modal-content img {
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 36px; }
+  .hero p { font-size: 14px; }
+  .navbar-nav { gap: 0.5rem; }
+}
+
+/* Navbar active state for scrollspy */
+.navbar .nav-link.active {
+  font-weight: 700;
+  color: #1e5600 !important;
+}
+
+/* Fix offset top spacing (karena navbar fixed) */
+section {
+  scroll-margin-top: 90px;
+}
