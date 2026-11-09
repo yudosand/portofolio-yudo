@@ -15,6 +15,26 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 1100;
+  padding: 0.8rem 1.2rem;
+  background: var(--surface);
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  top: 0.5rem;
 }
 
 body {
@@ -114,6 +134,13 @@ img {
   max-width: 680px;
   font-size: 1.05rem;
   margin-bottom: 2rem;
+}
+
+.hero-subtitle {
+  color: var(--accent);
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
 }
 
 .hero-meta {
@@ -359,6 +386,10 @@ img {
   border-radius: var(--radius-lg);
 }
 
+.timeline-item-text {
+  grid-template-columns: 1fr;
+}
+
 .timeline-logo {
   display: flex;
   align-items: flex-start;
@@ -400,6 +431,8 @@ img {
 }
 
 .project-card {
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   height: 100%;
   border-radius: var(--radius-lg);
@@ -426,11 +459,65 @@ img {
 }
 
 .project-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1;
   padding: 1.4rem;
 }
 
-.project-body h3 {
+.project-body .project-title {
   font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.project-visual {
+  flex-shrink: 0;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--surface-alt);
+  border-bottom: 1px solid var(--line);
+}
+
+.project-visual .project-image {
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.project-body .project-tags {
+  margin-bottom: 0;
+}
+
+.project-body .project-role {
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.project-role strong {
+  color: var(--text);
+}
+
+.project-details-button {
+  margin-top: auto;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.project-details-button:hover {
+  background: var(--accent);
+  color: var(--surface);
 }
 
 .project-body p {
@@ -523,10 +610,16 @@ img {
   padding: 1.5rem;
 }
 
+.modal-toolbar {
+  justify-content: flex-end;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 0;
+  flex-shrink: 0;
+}
+
 .modal-close-button {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
+  position: relative;
+  flex-shrink: 0;
   z-index: 20;
   display: inline-flex;
   align-items: center;
@@ -566,17 +659,22 @@ img {
   background: #ffffff !important;
   box-shadow: 0 14px 32px rgba(17, 24, 39, 0.14);
   transform: translateY(-1px);
-  outline: none;
+}
+
+.modal-close-button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .modal-image-wrap {
   height: 100%;
+  min-height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(245, 242, 235, 0.9) 0%, rgba(255, 255, 255, 0.98) 100%);
+  background: var(--surface-alt);
   border: 1px solid rgba(17, 24, 39, 0.08);
 }
 
@@ -584,6 +682,22 @@ img {
   width: 100%;
   max-height: 76vh;
   object-fit: contain;
+}
+
+.modal-image-wrap.has-project-image {
+  position: sticky;
+  top: 0;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.modal-preview .modal-body .modal-project-image {
+  height: 100%;
+  max-height: 100%;
+  border-radius: 18px;
 }
 
 .modal-info-panel {
@@ -653,14 +767,27 @@ img {
   line-height: 1.75;
 }
 
+.modal-features {
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 0;
+  padding-left: 1.2rem;
+}
+
+.modal-body {
+  overscroll-behavior: contain;
+}
+
 @media (max-width: 991.98px) {
   .modal-preview-body {
     padding: 1rem;
   }
 
-  .modal-close-button {
-    top: 0.85rem;
-    right: 0.85rem;
+  .modal-image-wrap {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    max-height: 280px;
   }
 
   .modal-info-panel {
@@ -803,5 +930,16 @@ img {
   .projects-block-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
   }
 }
