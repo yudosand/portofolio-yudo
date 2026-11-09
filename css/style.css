@@ -243,8 +243,9 @@ img {
 
 .profile-frame img {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
   border-radius: 28px;
 }
 
